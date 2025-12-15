@@ -25,8 +25,8 @@ public class TransactionServiceImpl implements TransactionService {
         // DTO -> Entity
         TransactionEntity entity = mapper.toEntity(request);
 
-        if (entity.getAddresses() != null) {
-            entity.getAddresses()
+        if (entity.getAddressEntities() != null) {
+            entity.getAddressEntities()
                     .forEach(a -> a.setTransaction(entity));
         }
 

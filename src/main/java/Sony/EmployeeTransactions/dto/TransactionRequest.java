@@ -9,6 +9,6 @@ public class TransactionRequest {
     private String id;
     private String txnName;
     private String amount;
-    private List<AddressRequest> addresses;
+    private List<AddressRequest> addressesDtos;
 
 }

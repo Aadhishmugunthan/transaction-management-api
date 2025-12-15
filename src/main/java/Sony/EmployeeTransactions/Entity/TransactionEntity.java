@@ -6,55 +6,31 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.CascadeType;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.List;
 
 @Entity
 @Table(name = "TRANSACTION_TABLE")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class TransactionEntity {
 
     @Id
-    private String id;        // Primary Key (String)
+    private String id;
 
-    private String txnName;   // Transaction name
-    private String amount;    // Amount as String
+    private String txnName;
+    private String amount;
 
     @OneToMany(
             mappedBy = "transaction",
             cascade = CascadeType.ALL
     )
     @JsonManagedReference
-    private List<AddressEntity> addresses;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getTxnName() {
-        return txnName;
-    }
-
-    public void setTxnName(String txnName) {
-        this.txnName = txnName;
-    }
-
-    public String getAmount() {
-        return amount;
-    }
-
-    public void setAmount(String amount) {
-        this.amount = amount;
-    }
-
-    public List<AddressEntity> getAddresses() {
-        return addresses;
-    }
-
-    public void setAddresses(List<AddressEntity> addresses) {
-        this.addresses = addresses;
-    }
+    private List<AddressEntity> addressEntities;
 }
