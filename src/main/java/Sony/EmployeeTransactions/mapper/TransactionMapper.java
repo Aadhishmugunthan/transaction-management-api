@@ -9,6 +9,5 @@ import org.mapstruct.Mapping;
 public interface TransactionMapper {
 
     @Mapping(source = "addressesDtos", target = "addressEntities")
-    @Mapping(target = "addressEntities[].transaction", ignore = true)
     TransactionEntity toEntity(TransactionRequest request);
 }

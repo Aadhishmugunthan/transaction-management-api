@@ -1,7 +1,7 @@
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '4.0.0'
-    id 'io.spring.dependency-management' version '1.1.7'
+    id 'org.springframework.boot' version '3.3.4'
+    id 'io.spring.dependency-management' version '1.1.6'
 }
 
 group = 'Sony'
@@ -10,42 +10,40 @@ version = '0.0.1-SNAPSHOT'
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(21)
+
     }
 }
 
 repositories {
     mavenCentral()
+    maven { url "https://repo.spring.io/milestone" }
 }
 
 dependencies {
 
-    //  Web + REST
+    testImplementation(platform("org.springframework.boot:spring-boot-dependencies:4.0.0"))
+    // Spring
     implementation 'org.springframework.boot:spring-boot-starter-web'
-
-    // ️ JPA
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 
-    //  MapStruct
-    implementation 'org.mapstruct:mapstruct:1.5.5.Final'
-    annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.5.Final'
+    // MapStruct
+    implementation 'org.mapstruct:mapstruct:1.6.0'
+    annotationProcessor 'org.mapstruct:mapstruct-processor:1.6.0'
 
-    //  Lombok
-    compileOnly 'org.projectlombok:lombok'
-    annotationProcessor 'org.projectlombok:lombok'
-
-    //  Oracle JDBC
-    runtimeOnly 'com.oracle.database.jdbc:ojdbc11'
-
-    //  Testing
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-
-    // 🔑 THIS IS THE KEY
+    // Lombok
+   // compileOnly 'org.projectlombok:lombok:1.18.36'
+    //annotationProcessor 'org.projectlombok:lombok:1.18.36'
     annotationProcessor 'org.projectlombok:lombok-mapstruct-binding:0.2.0'
 
+    // Oracle
     runtimeOnly 'com.oracle.database.jdbc:ojdbc11'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-}
 
+    // Tests
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
 tasks.named('test') {
     useJUnitPlatform()
 }
+
+

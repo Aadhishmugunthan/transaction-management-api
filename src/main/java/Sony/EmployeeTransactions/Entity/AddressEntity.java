@@ -6,17 +6,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
 @Table(name = "ADDRESS")
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
 public class AddressEntity {
 
     @Id
@@ -30,4 +22,49 @@ public class AddressEntity {
     @JsonManagedReference
     private TransactionEntity transaction;
 
+    // ✅ No-args constructor
+    public AddressEntity() {
+    }
+
+    // ✅ All-args constructor
+    public AddressEntity(String id, String city, String state, TransactionEntity transaction) {
+        this.id = id;
+        this.city = city;
+        this.state = state;
+        this.transaction = transaction;
+    }
+
+    // ✅ Getters & Setters
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public TransactionEntity getTransaction() {
+        return transaction;
+    }
+
+    public void setTransaction(TransactionEntity transaction) {
+        this.transaction = transaction;
+    }
 }
